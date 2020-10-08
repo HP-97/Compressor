@@ -23,7 +23,7 @@ A Powershell script written with a GUI to compress video files. This is done by 
 Run compressForm.ps1 to open the GUI
 
 ```powershell
-.\compress.ps1
+.\compressForm.ps1
 ```
 
 The following window should appear:
