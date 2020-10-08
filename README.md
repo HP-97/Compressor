@@ -2,7 +2,7 @@
 
 A Powershell script written with a GUI to compress video files. This is done by using FFmpeg.
 
- It is currently hard-coded to output a video file around a size of 8MB
+ It is currently hard-coded to output a video file around a size of 8MB.
 
 ## Getting Started
 
@@ -14,13 +14,23 @@ A Powershell script written with a GUI to compress video files. This is done by 
 
     NOTE: The script will **definitely** not work with Powershell 5 and older. Powershell 6 may work but has not been tested.
 
-- FFmpeg
-  
-  FFmpeg will need to be set up in PATH. Instructions can be found here: https://video.stackexchange.com/questions/20495/how-do-i-set-up-and-use-ffmpeg-in-windows
+- FFmpeg  
+
+    FFmpeg builds for Windows can be downloaded at https://github.com/BtbN/FFmpeg-Builds/releases
+
+    FFmpeg will need to be set up in PATH. Instructions can be found here: https://video.stackexchange.com/questions/20495/how-do-i-set-up-and-use-ffmpeg-in-windows
+
+## Execution
+
+Enable execution of PowerShell scripts (Replace `CurrentUser` with your username):
+
+```powershell
+PS> Set-ExecutionPolicy Unrestricted -Scope CurrentUser
+```
 
 ## Usage
 
-Run compressForm.ps1 to open the GUI
+1. Run compressForm.ps1 to open the GUI
 
 ```powershell
 .\compressForm.ps1
@@ -30,13 +40,13 @@ The following window should appear:
 
 ![Main UI](assets/main_ui.png)
 
-Drag any video files you wish to compress into the list box. Only the shown supported video extensions are currently supported. More video extensions will be added in future releases.
+2. Drag any video files you wish to compress into the list box. Only the shown supported video extensions are currently supported. More video extensions will be added in future releases.
 
-Non-supported files will be rejected.
+    Non-supported files will be rejected.
 
-Once all the target video files have been dragged in, press `Compress all` to begin compressing all of the listed video files. The compression process will be logged in the Powershell console the GUI is running from.
+3. Once all the target video files have been dragged in, press `Compress all` to begin compressing all of the listed video files. The compression process will be logged in the Powershell console the GUI is running from.
 
-The resulting compressed video file will be found in the same directory as the source file with an appended `_compressed` added to the name. The original video file is **not modified**.
+    The resulting compressed video file will be found in the same directory as the source file with an appended `_compressed` added to the name. The original video file is **not modified**.
 
 Example:
 ```
