@@ -48,10 +48,10 @@ $button_Click = {
 }
 
 $clearSelectedButton_Click = {
-    while ($var_ListBox.SelectedItems) {
-        $CurrItem = $var_listBox.SelectedItems[0]
+    while ($listBox.SelectedItems) {
+        $CurrItem = $listBox.SelectedItems[0]
         Write-Host "Removing $CurrItem"
-        $var_Listbox.Items.Remove($CurrItem)
+        $listBox.Items.Remove($CurrItem)
     }
 }
 
