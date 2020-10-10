@@ -9,7 +9,9 @@ A Powershell script written with a GUI to compress video files. This is done by 
 ### Prerequisites
 
 - Powershell 7
+    
     It is recommended to use PowerShell 7.0.X
+
     Powershell 7.0.X can be downloaded at https://github.com/PowerShell/powershell/releases
 
     NOTE:
