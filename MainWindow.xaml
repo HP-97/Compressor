@@ -1,0 +1,22 @@
+﻿<Window x:Class="CompressForm.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CompressForm"
+        mc:Ignorable="d"
+        Title="FFmpeg Compress" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="4*"/>
+            <RowDefinition Height="415*"/>
+        </Grid.RowDefinitions>
+        <ListBox Height="257" Margin="10,109,10,0" VerticalAlignment="Top" Grid.Row="1" Name="listBox" SelectionMode="Multiple" AllowDrop="True"/>
+        <Label Content="Status Label" HorizontalAlignment="Left" Margin="10,371,0,0" VerticalAlignment="Top" Width="772" Height="34" Grid.Row="1" Name="labelStatus"/>
+        <Button Content="Compress all" HorizontalAlignment="Left" Margin="10,10,0,0" Grid.Row="1" VerticalAlignment="Top" Width="119" Height="25" Name="btnCompressAll"/>
+        <Button Content="Clear selected items" HorizontalAlignment="Left" Margin="10,40,0,0" Grid.Row="1" VerticalAlignment="Top" Width="119" Height="25" Name="btnClearSelected"/>
+        <CheckBox Content="Clear afterwards" HorizontalAlignment="Left" Height="25" Margin="150,15,0,0" Grid.Row="1" VerticalAlignment="Top" Width="112" Name="chkClearAfterwards"/>
+        <Label Content="Drop video files here (Supports .mp4, .mkv)" HorizontalAlignment="Left" Margin="10,70,0,0" Grid.Row="1" VerticalAlignment="Top" Height="34" Name="labelListBoxDesc"/>
+
+    </Grid>
+</Window>

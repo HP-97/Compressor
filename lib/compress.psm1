@@ -25,8 +25,6 @@
 
 .EXTERNALSCRIPTDEPENDENCIES
 
-.RELEASENOTES Compress script now uses the Floor function rather than Round to prevent scenarios where the final filesize is too large.
-
 .PRIVATEDATA
 
 #>
@@ -51,32 +49,42 @@ Function Compress-VideoClip {
     )
 
     begin {
-
+        # Initialisation
+        $FFmpegPath = ".\bin\ffmpeg.exe"
+        $FFprobePath = ".\bin\ffprobe.exe"
         if (-not (Test-Path -Path $VideoPath)) {
             Write-Error "Video path <$VideoPath> could not be found. Exiting" -ErrorAction Stop
         }
-        if (-not (Get-Command "ffmpeg.exe" -ErrorAction SilentlyContinue)) {
-            Write-Error "FFmpeg was not found in PATH. Please add FFmpeg to PATH before proceeding." -ErrorAction Stop
+        # Order of precedence for ffmpeg.exe and ffprobe.exe:
+        # 1. Local
+        # 2. PATH
+        if (-not (Test-Path $FFmpegPath -ErrorAction SilentlyContinue)) {
+            $FFmpegPath = "ffmpeg.exe"
+            if (-not (Get-Command $FFmpegPath -ErrorAction SilentlyContinue)) {
+                Write-Error "FFmpeg was not found in PATH. Please add FFmpeg to PATH before proceeding." -ErrorAction Stop
+            }
         }
-        if (-not (Get-Command "ffprobe.exe" -ErrorAction SilentlyContinue)) {
-            Write-Error "FFprobe was not found in PATH. Please add FFmpeg to PATH before proceeding." -ErrorAction Stop
+        if (-not (Test-Path $FFprobePath -ErrorAction SilentlyContinue)) {
+            $FFprobePath = "ffprobe.exe"
+            if (-not (Get-Command $FFprobePath -ErrorAction SilentlyContinue)) {
+                Write-Error "FFprobe was not found in PATH. Please add FFmpeg to PATH before proceeding." -ErrorAction Stop
+            }
         }
-
+        Write-Host "Using FFmpeg: ${FFmpegPath}"
+        Write-Host "Using FFprobe: ${FFprobePath}"
+        
         # List of items to remove post compression
         $RemoveArray = @('.\ffmpeg2pass-0.log', '.\ffmpeg2pass-0.log.mbtree')
         $ResolvedPath = Resolve-Path -Path $VideoPath
         Write-Host "Target video is ${ResolvedPath}"
         # Write-Host "Removing special characters from Video Path to sanitize inputs"
         # $VideoPath = $VideoPath -replace '();', ''
-        # $VideoPath = [Management.Automation.WildcardPattern]::Escape("${VideoPath}")
         # $VideoPath = $VideoPath -replace "'", "'"
-        Write-Host $VideoPath
-
     }
 
     process {
         # Get the video metadata of target video
-        $FfprobeOutput = (Invoke-Expression "ffprobe -v error -show_entries format=duration:stream=width,height,r_frame_rate -of default=noprint_wrappers=1 -print_format json `"${VideoPath}`"") | Out-String
+        $FfprobeOutput = (Invoke-Expression "${FFprobePath} -v error -show_entries format=duration:stream=width,height,r_frame_rate -of default=noprint_wrappers=1 -print_format json `"${VideoPath}`"") | Out-String
 
         $Metadata = ConvertFrom-Json $FfprobeOutput
         $Duration = $Metadata.format.duration
@@ -100,11 +108,11 @@ Function Compress-VideoClip {
 
         # Pass 1
         Write-Host "Starting pass 1"
-        Invoke-Expression("ffmpeg -v quiet -stats -y -i `"${VideoPath}`" -c:v libx264 -preset slow -b:v ${AverageBitrate}k -pass 1 -an -f mp4 NUL")
+        Invoke-Expression("${FFmpegPath} -v quiet -stats -y -i `"${VideoPath}`" -c:v libx264 -preset slow -b:v ${AverageBitrate}k -pass 1 -an -f mp4 NUL") -ErrorAction Stop
 
         # Pass 2
         Write-Host "Starting pass 2"
-        Invoke-Expression("ffmpeg -v quiet -stats -y -i `"${VideoPath}`" -c:v libx264 -preset slow -b:v ${AverageBitrate}k -pass 2 -c:a aac -b:a 128k `"${PathFinal}`"")
+        Invoke-Expression("${FFmpegPath} -v quiet -stats -y -i `"${VideoPath}`" -c:v libx264 -preset slow -b:v ${AverageBitrate}k -pass 2 -c:a aac -b:a 128k `"${PathFinal}`"") -ErrorAction Stop
     }
 
     end {

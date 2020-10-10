@@ -9,7 +9,9 @@ A Powershell script written with a GUI to compress video files. This is done by 
 ### Prerequisites
 
 - Powershell 7
+    
     It is recommended to use PowerShell 7.0.X
+
     Powershell 7.0.X can be downloaded at https://github.com/PowerShell/powershell/releases
 
     NOTE:
@@ -18,9 +20,12 @@ A Powershell script written with a GUI to compress video files. This is done by 
 
 - FFmpeg  
 
+    **NOTE: Since release 0.2.0, the GitHub release will now contain two separate .zip releases, where one .zip file will contain FFmpeg executeables from the GPL variant, and the other .zip file only contains the program.**
+
     FFmpeg builds for Windows can be downloaded at https://github.com/BtbN/FFmpeg-Builds/releases
 
-    FFmpeg will need to be set up in PATH. Instructions can be found here: https://video.stackexchange.com/questions/20495/how-do-i-set-up-and-use-ffmpeg-in-windows
+    FFmpeg will need to be set up in PATH if you are using `Compress_without_FFmpeg_X.X.X`. Instructions can be found here: https://video.stackexchange.com/questions/20495/how-do-i-set-up-and-use-ffmpeg-in-windows
+
 
 ## Execution
 
