@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 - Moved UI creation logic from PowerShell to WPF .xaml file.
 - Add optional ffmpeg.exe and ffprobe.exe to releases.
+- Updated README.md with installation instructions.
 
 ## [0.1.0] - 2020-10-07
 
