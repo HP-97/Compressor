@@ -20,7 +20,7 @@ A Powershell script written with a GUI to compress video files. This is done by 
 
 - FFmpeg  
 
-    **NOTE: Since release 0.2.0, the GitHub release will now contain two separate .zip releases, where one .zip file will contain FFmpeg executeables from the GPL variant, and the other .zip file only contains the program.**
+    **NOTE: Since release 0.2.0, the GitHub release will now contain two separate .zip releases, where one .zip file will contain FFmpeg executables from the GPL variant, and the other .zip file only contains the program.**
 
     FFmpeg builds for Windows can be downloaded at https://github.com/BtbN/FFmpeg-Builds/releases
 
@@ -60,6 +60,12 @@ Example:
 Source file: C:\Videos\VideoClip.mp4
 Result file: C:\Videos\VideoClip_compressed.mp4
 ```
+
+## Licenses
+
+This project uses the following project:
+
+- [FFmpeg, licensed under GPLv2.0](https://github.com/FFmpeg/FFmpeg)
 
 ## Known Issues
 
