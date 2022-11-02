@@ -14,9 +14,9 @@ A Powershell script written with a GUI to compress video files. This is done by 
 
     Powershell 7.0.X can be downloaded at https://github.com/PowerShell/powershell/releases
 
-    NOTE:
-    - The script was formally tested using **PowerShell 7.0.3**.
-    - The script will **definitely** not work with PowerShell 5 and older. Powershell 6 may work but has not been tested.
+    > **Note**:
+    > - The script was formally tested using **PowerShell 7.0.3**.
+    > - The script will **definitely** not work with PowerShell 5 and older. Powershell 6 may work but has not been tested.
 
 - FFmpeg  
 
